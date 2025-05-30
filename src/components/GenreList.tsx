@@ -3,10 +3,11 @@ import { Avatar, Button, HStack, List, Text, Spinner } from '@chakra-ui/react';
 import useGenre from '../hooks/useGenre';
 
 interface Props {
-    onSelectGenre: (genre: string) => void
+    onSelectGenre: (genre: string) => void;
+    selectedGenre: string | null;
 }
 
-const GenreList: FC<Props> = ({ onSelectGenre }) => {
+const GenreList: FC<Props> = ({ onSelectGenre, selectedGenre }) => {
     const { data: genres, errorMessage, isLoading } = useGenre();
 
     return isLoading ? <Spinner></Spinner> : (
@@ -25,7 +26,12 @@ const GenreList: FC<Props> = ({ onSelectGenre }) => {
                                         <Avatar.Fallback name={g.name} />
                                         <Avatar.Image src={g.image_background} />
                                     </Avatar.Root>
-                                    <Button variant={"outline"} borderWidth="0" onClick={() => onSelectGenre(g.slug)}>{g.name}</Button>
+                                    <Button
+                                        fontWeight={selectedGenre === g.slug ? "bold" : "normal"}
+                                        variant={"outline"}
+                                        borderWidth="0"
+                                        onClick={() => onSelectGenre(g.slug)}>{g.name}
+                                    </Button>
                                 </HStack>
                             </List.Item>
                         ))}
