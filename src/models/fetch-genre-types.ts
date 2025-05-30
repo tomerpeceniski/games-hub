@@ -3,7 +3,3 @@ export interface Genre {
     name: string;
     image_background: string    
 }
-
-export interface GenresResponse {
-    results: Genre[];
-}
