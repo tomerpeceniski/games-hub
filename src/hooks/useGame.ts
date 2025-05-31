@@ -10,6 +10,7 @@ export default function useGame(gameQuery: GameQuery): { data: Game[], errorMess
                 genres: gameQuery.genreName,
                 parent_platforms: gameQuery.platform?.id,
                 search: gameQuery.search,
+                ordering: gameQuery.ordering?.value,
             }
         },
         [gameQuery]
