@@ -26,7 +26,7 @@ const PlatformSelector: FC<Props> = ({
         <Spinner></Spinner>
       ) : (
         !errorMessage && (
-          <Menu.Root>
+          <Menu.Root onExitComplete={() => setIsOpen(false)}>
             <Menu.Trigger asChild>
               <Button
                 variant="outline"

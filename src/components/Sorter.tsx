@@ -19,7 +19,7 @@ const Sorter: FC<Props> = ({ onSelectOrdering, selectedOrdering }) => {
 
     return (
         <>
-            <Menu.Root>
+            <Menu.Root onExitComplete={() => setIsOpen(false)}>
                 <Menu.Trigger asChild>
                     <Button
                         variant="outline"
