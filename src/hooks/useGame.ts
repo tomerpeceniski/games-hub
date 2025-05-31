@@ -1,8 +1,14 @@
 import type { Game } from "../models/fetch-game-types";
 import useFetchData from "./useFetchData";
-import type GameQuery from '../models/game-query'
+import useGameQuery from "../state-management/store";
 
-export default function useGame(gameQuery: GameQuery): { data: Game[], errorMessage: string, isLoading: boolean } {
+export default function useGame(): {
+    data: Game[],
+    errorMessage: string,
+    isLoading: boolean
+} {
+    const gameQuery = useGameQuery(s => s.gameQuery)
+
     return useFetchData<Game>(
         "/games",
         {

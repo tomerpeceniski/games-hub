@@ -4,15 +4,11 @@ import { ColorModeButton } from './ui/color-mode'
 import { type FC } from 'react'
 import SearchBar from './SearchBar'
 
-interface Props {
-  searchSubmitter: (text: string) => void
-}
-
-const Nav: FC<Props> = ({ searchSubmitter }) => {
+const Nav: FC = () => {
   return (
     <HStack>
       <Image src={logo} boxSize={"30px"} ></Image>
-      <SearchBar searchSubmitter={searchSubmitter}></SearchBar>
+      <SearchBar/>
       <ColorModeButton></ColorModeButton>
     </HStack>
   )

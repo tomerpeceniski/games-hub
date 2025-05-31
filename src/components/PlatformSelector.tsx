@@ -2,21 +2,15 @@ import { Menu, Button, Portal, Spinner } from "@chakra-ui/react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import usePlatform from "../hooks/usePlatform";
 import { type FC, useState } from "react";
-import type ParentPlatform from "../models/fetch-platform-types";
 import { easeOut } from 'framer-motion'
 import ComponentMotion from "./ComponentMotion";
+import useGameQuery from "../state-management/store";
 
 const duration = 0.5;
 
-interface Props {
-  selectedPlatform: ParentPlatform | null;
-  onSelectPlatform: (platform: ParentPlatform | null) => void;
-}
-
-const PlatformSelector: FC<Props> = ({
-  selectedPlatform,
-  onSelectPlatform,
-}) => {
+const PlatformSelector: FC = () => {
+  const selectedPlatform = useGameQuery(s => s.gameQuery.platform);
+  const setPlatform = useGameQuery(s => s.setPlatform);
   const { errorMessage, isLoading, data: platforms } = usePlatform();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -47,7 +41,7 @@ const PlatformSelector: FC<Props> = ({
                     <Menu.Item
                       key={"p.id"}
                       onClick={() => {
-                        onSelectPlatform(null);
+                        setPlatform(null);
                         setIsOpen(false);
                       }}
                       value={""}
@@ -58,7 +52,7 @@ const PlatformSelector: FC<Props> = ({
                       <Menu.Item
                         key={p.id}
                         onClick={() => {
-                          onSelectPlatform(p);
+                          setPlatform(p);
                           setIsOpen(false);
                         }}
                         value={p.id}
