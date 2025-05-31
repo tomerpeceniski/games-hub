@@ -11,7 +11,7 @@ const duration = 0.5;
 const PlatformSelector: FC = () => {
   const selectedPlatform = useGameQuery(s => s.gameQuery.platform);
   const setPlatform = useGameQuery(s => s.setPlatform);
-  const { errorMessage, isLoading, data: platforms } = usePlatform();
+  const { error, isLoading, data: platforms } = usePlatform();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -19,7 +19,7 @@ const PlatformSelector: FC = () => {
       {isLoading ? (
         <Spinner></Spinner>
       ) : (
-        !errorMessage && (
+        !error && (
           <Menu.Root onExitComplete={() => setIsOpen(false)}>
             <Menu.Trigger asChild>
               <Button
@@ -48,7 +48,7 @@ const PlatformSelector: FC = () => {
                     >
                       Platforms
                     </Menu.Item>
-                    {platforms.map((p) => (
+                    {platforms?.map((p) => (
                       <Menu.Item
                         key={p.id}
                         onClick={() => {
