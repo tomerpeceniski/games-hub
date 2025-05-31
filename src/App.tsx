@@ -1,7 +1,7 @@
 import { Grid, GridItem, Stack } from "@chakra-ui/react";
 import Nav from "./components/Nav";
 import GameGrid from "./components/GameGrid";
-import GanreList from "./components/GenreList";
+import GenreList from "./components/GenreList";
 import { useState } from "react";
 import PlatformSelector from "./components/PlatformSelector";
 import type ParentPlatform from "./models/fetch-platform-types";
@@ -23,9 +23,9 @@ function App() {
       </GridItem>
       <Stack hideBelow={"md"}>
         <GridItem area="aside" paddingX={5}>
-          <GanreList
+          <GenreList
             selectedGenre={selectedGenre}
-            onSelectGenre={(genreName: string) => setSelectedGenre(genreName)}
+            onSelectGenre={(genreName: string | null ) => setSelectedGenre(genreName)}
           />
         </GridItem>
       </Stack>
