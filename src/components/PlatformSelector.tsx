@@ -3,6 +3,10 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import usePlatform from "../hooks/usePlatform";
 import { type FC, useState } from "react";
 import type ParentPlatform from "../models/fetch-platform-types";
+import { easeOut } from 'framer-motion'
+import ComponentMotion from "./ComponentMotion";
+
+const duration = 0.5;
 
 interface Props {
   selectedPlatform: ParentPlatform | null;
@@ -15,7 +19,7 @@ const PlatformSelector: FC<Props> = ({
 }) => {
   const { errorMessage, isLoading, data: platforms } = usePlatform();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-    
+
   return (
     <>
       {isLoading ? (
@@ -31,35 +35,39 @@ const PlatformSelector: FC<Props> = ({
                 onClick={() => setIsOpen(!isOpen)}
               >
                 {selectedPlatform?.name || "Platforms"}
-                {isOpen ? <FaChevronUp /> : <FaChevronDown />}
+                {isOpen ? <ComponentMotion duration={duration} timing={easeOut}>
+                  <FaChevronUp />
+                </ComponentMotion> : <FaChevronDown></FaChevronDown>}
               </Button>
             </Menu.Trigger>
             <Portal>
               <Menu.Positioner>
-                <Menu.Content>
-                  <Menu.Item
-                    key={"p.id"}
-                    onClick={() => {
-                      onSelectPlatform(null);
-                      setIsOpen(false);
-                    }}
-                    value={""}
-                  >
-                    Platforms
-                  </Menu.Item>
-                  {platforms.map((p) => (
+                <ComponentMotion duration={duration} timing={easeOut}>
+                  <Menu.Content>
                     <Menu.Item
-                      key={p.id}
+                      key={"p.id"}
                       onClick={() => {
-                        onSelectPlatform(p);
+                        onSelectPlatform(null);
                         setIsOpen(false);
                       }}
-                      value={p.id}
+                      value={""}
                     >
-                      {p.name}
+                      Platforms
                     </Menu.Item>
-                  ))}
-                </Menu.Content>
+                    {platforms.map((p) => (
+                      <Menu.Item
+                        key={p.id}
+                        onClick={() => {
+                          onSelectPlatform(p);
+                          setIsOpen(false);
+                        }}
+                        value={p.id}
+                      >
+                        {p.name}
+                      </Menu.Item>
+                    ))}
+                  </Menu.Content>
+                </ComponentMotion>
               </Menu.Positioner>
             </Portal>
           </Menu.Root>
