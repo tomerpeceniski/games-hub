@@ -6,15 +6,15 @@ import useGenre from '../hooks/useGenre';
 const GenreList: FC = () => {
     const selectedGenre = useGameQuery(s => s.gameQuery.genreName);
     const setGenre = useGameQuery(s => s.setGenre);
-    const { data: genres, errorMessage, isLoading } = useGenre();
+    const { data: genres, error, isLoading } = useGenre();
 
     return isLoading ? (
         <Spinner></Spinner>
     ) : (
         <>
-            {errorMessage ? (
+            {error?.message ? (
                 <Text color="red" fontSize={"2.5rem"}>
-                    {errorMessage}
+                    {error?.message}
                 </Text>
             ) : (
                 <List.Root listStyle="none" maxHeight="85vh" overflow="auto">
@@ -30,7 +30,7 @@ const GenreList: FC = () => {
                             </Button>
                         </HStack>
                     </List.Item>
-                    {genres.map((g) => (
+                    {genres?.map((g) => (
                         <List.Item key={g.id}>
                             <HStack padding={2}>
                                 <Avatar.Root shape="rounded" size="lg" me="-1">

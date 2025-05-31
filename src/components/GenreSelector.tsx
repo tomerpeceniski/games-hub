@@ -1,6 +1,6 @@
 import { Menu, Button, Portal, Spinner } from "@chakra-ui/react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import useGener from "../hooks/useGenre";
+import useGenre from "../hooks/useGenre";
 import { type FC, useState } from "react";
 import { easeOut } from 'framer-motion'
 import ComponentMotion from "./ComponentMotion";
@@ -9,7 +9,7 @@ import useGameQuery from "../state-management/store";
 const duration = 0.5;
 
 const GenreSelector: FC = () => {
-    const { errorMessage, isLoading, data: genres } = useGener();
+    const { error, isLoading, data: genres } = useGenre();
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const selectedGenre = useGameQuery(s => s.gameQuery.genreName);
     const setGenre = useGameQuery(s => s.setGenre)
@@ -19,7 +19,7 @@ const GenreSelector: FC = () => {
             {isLoading ? (
                 <Spinner></Spinner>
             ) : (
-                !errorMessage && (
+                !error && (
                     <Menu.Root onExitComplete={() => setIsOpen(false)}>
                         <Menu.Trigger asChild>
                             <Button
@@ -48,7 +48,7 @@ const GenreSelector: FC = () => {
                                         >
                                             Platforms
                                         </Menu.Item>
-                                        {genres.map((g) => (
+                                        {genres?.map((g) => (
                                             <Menu.Item
                                                 key={g.id}
                                                 onClick={() => {
