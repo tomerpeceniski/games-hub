@@ -18,7 +18,7 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <Nav></Nav>
+        <Nav searchSubmitter={(text) => setGameQuery({ ...gameQuery, search: text })}></Nav>
       </GridItem>
       <Stack hideBelow={"md"}>
         <GridItem area="aside" paddingX={5}>

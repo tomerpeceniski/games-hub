@@ -1,12 +1,19 @@
 import { HStack, Image } from '@chakra-ui/react'
 import logo from '../assets/games-hub-logo.png'
 import { ColorModeButton } from './ui/color-mode'
+import { type FC } from 'react'
+import SearchBar from './SearchBar'
 
-const Nav = () => {
+interface Props {
+  searchSubmitter: (text: string) => void
+}
+
+const Nav: FC<Props> = ({ searchSubmitter }) => {
   return (
-    <HStack justifyContent={"space-between"}>
-        <Image src={logo} boxSize={"30px"} ></Image>
-        <ColorModeButton></ColorModeButton>
+    <HStack>
+      <Image src={logo} boxSize={"30px"} ></Image>
+      <SearchBar searchSubmitter={searchSubmitter}></SearchBar>
+      <ColorModeButton></ColorModeButton>
     </HStack>
   )
 }
