@@ -6,7 +6,7 @@ import SearchBar from './SearchBar'
 
 const Nav: FC = () => {
   return (
-    <HStack>
+    <HStack justifyContent={"space-between"}>
       <Image src={logo} boxSize={"30px"} ></Image>
       <SearchBar/>
       <ColorModeButton></ColorModeButton>
