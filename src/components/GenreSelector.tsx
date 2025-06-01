@@ -28,7 +28,7 @@ const GenreSelector: FC = () => {
                                 borderWidth={0}
                                 onClick={() => setIsOpen(!isOpen)}
                             >
-                                {selectedGenre || "Genres"}
+                                {selectedGenre || "All Genres"}
                                 <AnimatePresence mode="wait">
                                     {isOpen ?
                                         <ComponentMotion key="up" duration={duration} timing={easeOut}>
@@ -55,7 +55,7 @@ const GenreSelector: FC = () => {
                                             value={""}
                                             cursor="pointer"
                                         >
-                                            Platforms
+                                            All Genres
                                         </Menu.Item>
                                         {genres?.map((g) => (
                                             <Menu.Item

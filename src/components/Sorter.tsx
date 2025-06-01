@@ -43,7 +43,17 @@ const Sorter: FC = () => {
                     <Menu.Positioner>
                         <ComponentMotion duration={duration} timing={easeOut}>
                             <Menu.Content>
-
+                                <Menu.Item
+                                    key={"relevance"}
+                                    onClick={() => {
+                                        setOrdering(null);
+                                        setIsOpen(false);
+                                    }}
+                                    value={""}
+                                    cursor="pointer"
+                                >
+                                    Relevance
+                                </Menu.Item>
                                 {sortOptions.map((option) => (
                                     <Menu.Item
                                         key={option.value}
