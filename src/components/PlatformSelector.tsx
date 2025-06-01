@@ -26,9 +26,11 @@ const PlatformSelector: FC = () => {
                 variant="outline"
                 size="sm"
                 borderWidth={0}
+                minWidth="160px"
                 onClick={() => setIsOpen(!isOpen)}
+                justifyContent={"space-between"}
               >
-                {selectedPlatform?.name || "Platforms"}
+                {selectedPlatform?.name || "All Platforms"}
                 <AnimatePresence mode="wait">
                   {isOpen ? 
                     <ComponentMotion key="up" duration={duration} timing={easeOut}>
@@ -55,7 +57,7 @@ const PlatformSelector: FC = () => {
                       value={""}
                       cursor="pointer"
                     >
-                      Platforms
+                      All Platforms
                     </Menu.Item>
                     {platforms?.map((p) => (
                       <Menu.Item

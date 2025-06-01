@@ -23,6 +23,8 @@ const Sorter: FC = () => {
                         variant="outline"
                         size="sm"
                         borderWidth={0}
+                        justifyContent={"space-between"}
+                        minWidth="160px"
                         onClick={() => setIsOpen(!isOpen)}
                     >
                         {` Order by ${selectedOrdering?.displayName || "Relevance"}`}
