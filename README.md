@@ -1,54 +1,67 @@
-# React + TypeScript + Vite
+# Games Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Games Hub is a website for browsing through game reviews, where users can find desired games using a range of filters such as platform, genre, and sorting options.
 
-Currently, two official plugins are available:
+## Preview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![App preview](./public/screenshot.gif)
 
-## Expanding the ESLint configuration
+## Features
+- Browse a large collection of video games
+- Filter by platform and genre
+- Sort by popularity, release date, and more
+- Responsive UI with dark mode
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Deployed Website
+Check out the [deployed website](https://games-hub-gules.vercel.app/) to explore the app in action.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Technologies Used
+- Vite
+- React
+- TypeScript
+- Chakra UI
+- React Query
+- Zustand
+- Axios
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## API
+This application uses the public RAWG Video Games Database API for searching and retrieving game data. For more information, see the [RAWG API documentation](https://rawg.io/apidocs).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Getting Started (Run Locally)
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+1. **Clone the repository:**
+   ```bash
+   git clone <https://github.com/tomerpeceniski/games-hub.git>
+   cd games-hub
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Create a `.env` file in the root directory:**
+   Add your RAWG API key:
+   ```env
+   VITE_RAWG_API_KEY=your_api_key_here
+   ```
+
+4. **Start the development server:**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. **Open your browser:**
+   Visit [http://localhost:5173](http://localhost:5173) (or the port shown in your terminal) to use the app.
+
+---
+
+**Note:** You must obtain a free API key from [RAWG](https://rawg.io/apidocs) and add it to your `.env` file as shown above.
+
+## Contact
+
+Created by [Tomer Peceniski](https://github.com/tomerpeceniski) — feel free to reach out!
