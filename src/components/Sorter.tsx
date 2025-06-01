@@ -1,7 +1,7 @@
 import { Menu, Button, Portal } from "@chakra-ui/react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { type FC, useState } from "react";
-import { easeOut } from 'framer-motion';
+import { AnimatePresence, easeOut } from 'framer-motion';
 import ComponentMotion from "./ComponentMotion";
 import sortOptions from "../../config/sort-config.json"
 import useGameQuery from "../state-management/store";
@@ -26,9 +26,17 @@ const Sorter: FC = () => {
                         onClick={() => setIsOpen(!isOpen)}
                     >
                         {` Order by ${selectedOrdering?.displayName || "Relevance"}`}
-                        {isOpen ? <ComponentMotion duration={duration} timing={easeOut}>
-                            <FaChevronUp />
-                        </ComponentMotion> : <FaChevronDown></FaChevronDown>}
+                        <AnimatePresence mode="wait">
+                            {isOpen ?
+                                <ComponentMotion key="up" duration={duration} timing={easeOut}>
+                                    <FaChevronUp />
+                                </ComponentMotion>
+                                :
+                                <ComponentMotion key="down" duration={duration} timing={easeOut}>
+                                    <FaChevronDown />
+                                </ComponentMotion>
+                            }
+                        </AnimatePresence>
                     </Button>
                 </Menu.Trigger>
                 <Portal>
@@ -44,6 +52,7 @@ const Sorter: FC = () => {
                                             setIsOpen(false);
                                         }}
                                         value={option.value}
+                                        cursor="pointer"
                                     >
                                         {option.displayName}
                                     </Menu.Item>

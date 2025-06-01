@@ -2,7 +2,7 @@ import { Menu, Button, Portal, Spinner } from "@chakra-ui/react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import usePlatform from "../hooks/usePlatform";
 import { type FC, useState } from "react";
-import { easeOut } from 'framer-motion'
+import { easeOut, AnimatePresence } from 'framer-motion'
 import ComponentMotion from "./ComponentMotion";
 import useGameQuery from "../state-management/store";
 
@@ -29,9 +29,17 @@ const PlatformSelector: FC = () => {
                 onClick={() => setIsOpen(!isOpen)}
               >
                 {selectedPlatform?.name || "Platforms"}
-                {isOpen ? <ComponentMotion duration={duration} timing={easeOut}>
-                  <FaChevronUp />
-                </ComponentMotion> : <FaChevronDown></FaChevronDown>}
+                <AnimatePresence mode="wait">
+                  {isOpen ? 
+                    <ComponentMotion key="up" duration={duration} timing={easeOut}>
+                      <FaChevronUp />
+                    </ComponentMotion> 
+                    : 
+                    <ComponentMotion key="down" duration={duration} timing={easeOut}>
+                      <FaChevronDown />
+                    </ComponentMotion>
+                  }
+                </AnimatePresence>
               </Button>
             </Menu.Trigger>
             <Portal>
@@ -45,6 +53,7 @@ const PlatformSelector: FC = () => {
                         setIsOpen(false);
                       }}
                       value={""}
+                      cursor="pointer"
                     >
                       Platforms
                     </Menu.Item>
@@ -56,6 +65,7 @@ const PlatformSelector: FC = () => {
                           setIsOpen(false);
                         }}
                         value={p.id}
+                        cursor="pointer"
                       >
                         {p.name}
                       </Menu.Item>

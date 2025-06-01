@@ -2,7 +2,7 @@ import { Menu, Button, Portal, Spinner } from "@chakra-ui/react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import useGenre from "../hooks/useGenre";
 import { type FC, useState } from "react";
-import { easeOut } from 'framer-motion'
+import { AnimatePresence, easeOut } from 'framer-motion'
 import ComponentMotion from "./ComponentMotion";
 import useGameQuery from "../state-management/store";
 
@@ -29,9 +29,17 @@ const GenreSelector: FC = () => {
                                 onClick={() => setIsOpen(!isOpen)}
                             >
                                 {selectedGenre || "Genres"}
-                                {isOpen ? <ComponentMotion duration={duration} timing={easeOut}>
-                                    <FaChevronUp />
-                                </ComponentMotion> : <FaChevronDown></FaChevronDown>}
+                                <AnimatePresence mode="wait">
+                                    {isOpen ?
+                                        <ComponentMotion key="up" duration={duration} timing={easeOut}>
+                                            <FaChevronUp />
+                                        </ComponentMotion>
+                                        :
+                                        <ComponentMotion key="down" duration={duration} timing={easeOut}>
+                                            <FaChevronDown />
+                                        </ComponentMotion>
+                                    }
+                                </AnimatePresence>
                             </Button>
                         </Menu.Trigger>
                         <Portal>
@@ -45,6 +53,7 @@ const GenreSelector: FC = () => {
                                                 setIsOpen(false);
                                             }}
                                             value={""}
+                                            cursor="pointer"
                                         >
                                             Platforms
                                         </Menu.Item>

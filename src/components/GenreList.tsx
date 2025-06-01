@@ -17,7 +17,7 @@ const GenreList: FC = () => {
                     {error?.message}
                 </Text>
             ) : (
-                <List.Root listStyle="none" maxHeight="85vh" overflow="auto">
+                <List.Root listStyle="none" maxHeight="85vh" width={"16rem"} overflow="auto">
                     <List.Item key={"g.id"}>
                         <HStack marginStart={"4vw"}>
                             <Button

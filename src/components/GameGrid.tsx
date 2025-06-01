@@ -8,7 +8,7 @@ const GameGrid: FC = () => {
 
     return isLoading ? <Spinner /> : (<>
         {error ? <Text color="red" fontSize={"2.5rem"}>{error.message}</Text> :
-            <SimpleGrid paddingEnd={2} maxHeight="85vh" overflow="auto" marginTop="2vh" columns={
+            <SimpleGrid paddingEnd={2} maxHeight="80vh" overflow="auto" marginTop="2vh" columns={
                 {
                     base: 1,
                     sm: 2,

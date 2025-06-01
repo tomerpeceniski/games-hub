@@ -14,7 +14,7 @@ function App() {
         md: `'nav nav' 'aside main'`,
       }}
     >
-      <GridItem area="nav">
+      <GridItem area="nav" m={2}>
         <Nav />
       </GridItem>
       <Stack hideBelow={"md"}>
@@ -24,7 +24,7 @@ function App() {
       </Stack>
 
       <GridItem area="main" paddingX="5">
-        <HStack justifyContent="space-around">
+        <HStack justifyContent={{base:"center", md:"flex-start"}}>
           <PlatformSelector />
           <Sorter />
           <Box as="div" display={"inline"} hideBelow={"sm"} hideFrom={"md"}>
