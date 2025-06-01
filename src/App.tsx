@@ -11,7 +11,14 @@ function App() {
     <Grid
       templateAreas={{
         base: `'nav' 'main'`,
-        md: `'nav nav' 'aside main'`,
+        md: `
+          'nav nav nav nav nav nav nav'
+          'aside main main main main main main'
+        `,
+      }}
+      templateColumns={{
+        base: '1fr',
+        md: 'repeat(7, 1fr)',
       }}
     >
       <GridItem area="nav" m={2}>
@@ -24,7 +31,7 @@ function App() {
       </Stack>
 
       <GridItem area="main" paddingX="5">
-        <HStack justifyContent={{base:"center", md:"flex-start"}}>
+        <HStack justifyContent={{base:"center", md:"flex-start"}} width={"100%"}>
           <PlatformSelector />
           <Sorter />
           <Box as="div" display={"inline"} hideBelow={"sm"} hideFrom={"md"}>
